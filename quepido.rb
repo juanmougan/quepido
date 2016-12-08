@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'json'
 
-comidas = ["pizza", "sushi", "milanesa", "hamburguesa", "empanadas", "pollo", "picada", "parrilla", "pastas", "ensalada", "sandwitch"]
+comidas = ["pizza", "sushi", "milanesa", "hamburguesa", "empanadas", "pollo", "picada", "parrilla", "pastas", "ensalada", "sandwich"]
 etnicas = ["comida china", "comida armenia", "comida peruana", "comida india", "comida mexicana"]
 todas = comidas + etnicas
 
