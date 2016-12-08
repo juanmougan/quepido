@@ -1,7 +1,8 @@
 require 'sinatra'
 #require 'json'
 
-comidas = ["pizza", "sushi", "milanesa", "hamburguesa", "empanadas", "pollo", "picada"]
+comidas = ["pizza", "sushi", "milanesa", "hamburguesa", "empanadas", "pollo", "picada", "parrilla"]
+etnicas = ["comida china", "comida armenia", "comida peruana", "comida india"]
 
 not_found do
   status 404
@@ -14,6 +15,19 @@ get '/' do
 end
 
 get '/que' do
-  maxIndex = Random.rand(comidas.size - 1)
-  comidas[maxIndex]
+  dame_elemento_random_de comidas
+end
+
+get '/etnicas' do
+  dame_elemento_random_de etnicas
+end
+
+get '/mas' do
+  lista = comidas + etnicas
+  dame_elemento_random_de lista
+end
+
+def dame_elemento_random_de(lista)
+  maxIndex = Random.rand(lista.size - 1)
+  lista[maxIndex]
 end
