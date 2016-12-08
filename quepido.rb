@@ -1,5 +1,5 @@
 require 'sinatra'
-#require 'json'
+require 'json'
 
 comidas = ["pizza", "sushi", "milanesa", "hamburguesa", "empanadas", "pollo", "picada", "parrilla", "pastas", "ensalada", "sandwitch"]
 etnicas = ["comida china", "comida armenia", "comida peruana", "comida india", "comida mexicana"]
@@ -28,7 +28,7 @@ get '/mas' do
 end
 
 get '/todas' do
-  todas
+  todas.to_json
 end
 
 def dame_elemento_random_de(lista)
