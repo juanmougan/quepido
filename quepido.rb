@@ -10,6 +10,7 @@ end
 
 get '/' do
   #send_file 'index.html'
+  redirect to('/que')		# For now
 end
 
 get '/que' do
