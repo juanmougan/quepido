@@ -1,6 +1,6 @@
 # Qué pido?
 
-Imagine this situation: you are at home. You are hungry. You have *no idea* of what you should order. Then this is for you.
+Imagine this situation: you are at home. You are hungry. You have *no idea* of what you should order. Then this app is for you.
 
 ## Motivation
 
