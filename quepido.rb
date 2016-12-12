@@ -11,8 +11,7 @@ not_found do
 end
 
 get '/' do
-  #send_file 'index.html'
-  redirect to('/que')		# For now
+  send_file 'public/index.html'
 end
 
 get '/que' do
