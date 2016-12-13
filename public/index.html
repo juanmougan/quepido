@@ -21,5 +21,28 @@
   });
 </script>
 
+<script type="text/javascript">
+  function getFromEndpoint(endpoint) {
+  	$.get( endpoint, function( data ) {
+      console.log(data);
+      $( "#que-pido" ).html( data );
+    });
+  }
+</script>
+
+<!-- TODO add Bootstrap -->
+<!-- TODO Switch the class: the one selected should be primary, the others secondary -->
+<!-- TODO Read the default choice from... a cookie? -->
+<button id="clasicas" type="button" class="btn btn-outline-primary">Cl&aacute;sicas</button>
+<button id="etnicas" type="button" class="btn btn-outline-primary">&Eacute;tnicas</button>
+<button id="mas" type="button" class="btn btn-outline-primary">Todas</button>
+
+<script type="text/javascript">
+  $("button").click(function() {
+  	var endpoint = $(this).attr('id');
+  	getFromEndpoint(endpoint);
+  });
+</script>
+
 </body>
 </html>
