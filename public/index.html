@@ -12,9 +12,10 @@
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   crossorigin="anonymous"></script>
 
+<!-- TODO delete this. Should use the other script for the default case -->
 <script type="text/javascript">
-  $(document).ready(function(){
-    $.get( "que", function( data ) {
+  $(document).ready(function() {
+    $.get( "que/clasicas", function( data ) {
       console.log(data);
       $( "#que-pido" ).html( data );
     });	
@@ -23,9 +24,11 @@
 
 <script type="text/javascript">
   function getFromEndpoint(endpoint) {
-  	$.get( endpoint, function( data ) {
-      console.log(data);
-      $( "#que-pido" ).html( data );
+    $(document).ready(function(){
+    	$.get( endpoint, function( data ) {
+        console.log(data);
+        $( "#que-pido" ).html( data );
+      });
     });
   }
 </script>
@@ -35,7 +38,7 @@
 <!-- TODO Read the default choice from... a cookie? -->
 <button id="clasicas" type="button" class="btn btn-outline-primary">Cl&aacute;sicas</button>
 <button id="etnicas" type="button" class="btn btn-outline-primary">&Eacute;tnicas</button>
-<button id="mas" type="button" class="btn btn-outline-primary">Todas</button>
+<button id="todas" type="button" class="btn btn-outline-primary">Todas</button>
 
 <script type="text/javascript">
   $("button").click(function() {
