@@ -14,19 +14,19 @@ get '/' do
   send_file 'public/index.html'
 end
 
-get '/que' do
+get '/que/clasicas' do
   dame_elemento_random_de comidas
 end
 
-get '/etnicas' do
+get '/que/etnicas' do
   dame_elemento_random_de etnicas
 end
 
-get '/mas' do
+get '/que/todas' do
   dame_elemento_random_de todas
 end
 
-get '/todas' do
+get '/que' do
   todas.to_json
 end
 
