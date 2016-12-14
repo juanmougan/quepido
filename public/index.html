@@ -7,45 +7,64 @@
 
 <p id="que-pido"></p>
 
+<!-- jQuery and Bootstrap -->
 <script
   src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   crossorigin="anonymous"></script>
 
-<!-- TODO delete this. Should use the other script for the default case -->
-<script type="text/javascript">
-  $(document).ready(function() {
-    $.get( "que/clasicas", function( data ) {
-      console.log(data);
-      $( "#que-pido" ).html( data );
-    });	
-  });
-</script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
+  $(document).ready(function() {
+    getFromEndpoint("clasicas");    
+  });
+
   function getFromEndpoint(endpoint) {
     $(document).ready(function() {
-    	$.get( "que" + "/" + endpoint, function( data ) {
+      $.get( "que" + "/" + endpoint, function( data ) {
         console.log(data);
         $( "#que-pido" ).html( data );
       });
     });
   }
+
+  $(document).ready(function() {
+    $(".categorias").click(function() {
+      console.log("clicked: " + $(this));
+      var endpoint = $(this).attr('id');
+      getFromEndpoint(endpoint);
+    });
+  });
 </script>
 
 <!-- TODO add Bootstrap -->
 <!-- TODO Switch the class: the one selected should be primary, the others secondary -->
 <!-- TODO Read the default choice from... a cookie? -->
+<div class="btn-group" data-toggle="buttons">
+  <label class="btn btn-outline-primary active">
+    <input type="radio" name="categorias" class="categorias" id="clasicas" autocomplete="off" checked> Cl&aacute;sicas
+  </label>
+  <label class="btn btn-outline-primary">
+    <input type="radio" name="categorias" class="categorias" id="etnicas" autocomplete="off"> &Eacute;tnicas
+  </label>
+  <label class="btn btn-outline-primary">
+    <input type="radio" name="categorias" class="categorias" id="todas" autocomplete="off"> Todas
+  </label>
+</div>
+
+<!--
 <button id="clasicas" type="button" class="btn btn-outline-primary">Cl&aacute;sicas</button>
 <button id="etnicas" type="button" class="btn btn-outline-primary">&Eacute;tnicas</button>
 <button id="todas" type="button" class="btn btn-outline-primary">Todas</button>
-
-<script type="text/javascript">
-  $("button").click(function() {
-  	var endpoint = $(this).attr('id');
-  	getFromEndpoint(endpoint);
-  });
-</script>
+-->
 
 </body>
 </html>
