@@ -2,10 +2,6 @@
 <html>
 <head>
 <title>Qué Pido?</title>
-</head>
-<body>
-
-<p id="que-pido"></p>
 
 <!-- jQuery and Bootstrap -->
 <script
@@ -45,26 +41,22 @@
   });
 </script>
 
-<!-- TODO add Bootstrap -->
-<!-- TODO Switch the class: the one selected should be primary, the others secondary -->
-<!-- TODO Read the default choice from... a cookie? -->
+</head>
+<body>
+
+<p id="que-pido"></p>
+
 <div class="btn-group" data-toggle="buttons">
-  <label class="btn btn-outline-primary active">
-    <input type="radio" name="categorias" class="categorias" id="clasicas" autocomplete="off" checked> Cl&aacute;sicas
+  <label class="btn btn-outline-primary active categorias" id="clasicas">
+    <input type="radio" name="categorias" class="categorias" autocomplete="off" checked> Cl&aacute;sicas
   </label>
-  <label class="btn btn-outline-primary">
-    <input type="radio" name="categorias" class="categorias" id="etnicas" autocomplete="off"> &Eacute;tnicas
+  <label class="btn btn-outline-primary categorias" id="etnicas">
+    <input type="radio" name="categorias" class="categorias" autocomplete="off"> &Eacute;tnicas
   </label>
-  <label class="btn btn-outline-primary">
-    <input type="radio" name="categorias" class="categorias" id="todas" autocomplete="off"> Todas
+  <label class="btn btn-outline-primary categorias" id="todas">
+    <input type="radio" name="categorias" class="categorias" autocomplete="off"> Todas
   </label>
 </div>
-
-<!--
-<button id="clasicas" type="button" class="btn btn-outline-primary">Cl&aacute;sicas</button>
-<button id="etnicas" type="button" class="btn btn-outline-primary">&Eacute;tnicas</button>
-<button id="todas" type="button" class="btn btn-outline-primary">Todas</button>
--->
 
 </body>
 </html>
