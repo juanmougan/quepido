@@ -27,7 +27,7 @@
     $(document).ready(function() {
       $.get( "que" + "/" + endpoint, function( data ) {
         console.log(data);
-        $( "#que-pido" ).html( data );
+        $( "#que-pido" ).html( "Podríamos pedir <strong>" + data + "</strong>");
       });
     });
   }
@@ -44,7 +44,7 @@
 </head>
 <body>
 
-<p id="que-pido"></p>
+<p id="que-pido">Podríamos pedir</p>
 
 <div class="btn-group" data-toggle="buttons">
   <label class="btn btn-outline-primary active categorias" id="clasicas">
