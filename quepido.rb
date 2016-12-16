@@ -7,7 +7,7 @@ todas = comidas + etnicas
 
 not_found do
   status 404
-  "This page could not be found"
+  "Esta p&aacute;gina no existe :("
 end
 
 get '/' do
