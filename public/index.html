@@ -18,28 +18,7 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<script type="text/javascript">
-  $(document).ready(function() {
-    getFromEndpoint("clasicas");    
-  });
-
-  function getFromEndpoint(endpoint) {
-    $(document).ready(function() {
-      $.get( "que" + "/" + endpoint, function( data ) {
-        console.log(data);
-        $( "#que-pido" ).html( "Podríamos pedir <strong>" + data + "</strong>");
-      });
-    });
-  }
-
-  $(document).ready(function() {
-    $(".categorias").click(function() {
-      console.log("clicked: " + $(this));
-      var endpoint = $(this).attr('id');
-      getFromEndpoint(endpoint);
-    });
-  });
-</script>
+<script type="text/javascript" src="ajax.js"></script>
 
 </head>
 <body>
