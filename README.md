@@ -9,7 +9,7 @@ So, this is a dead-simple solution to that question
 
 ## Usage
   - Run `ruby quepido.rb`
-  - Go to `http://localhost:4567/que`
+  - Go to `http://localhost:4567/`
   - Order what you have just read there :)
 
 ## Technical aspects
