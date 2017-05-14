@@ -1,9 +1,12 @@
 require 'sinatra'
 require 'json'
+require "sinatra/config_file"
 
-comidas = ["pizza", "sushi", "milanesa", "hamburguesa", "empanadas", "pollo", "picada", "parrilla", "pastas", "ensalada", "sandwich"]
-etnicas = ["comida china", "comida armenia", "comida peruana", "comida india", "comida mexicana"]
-todas = comidas + etnicas
+config_file './config/comidas.yml'
+
+clasicas = settings.clasicas
+etnicas = settings.etnicas
+todas = clasicas + etnicas
 
 not_found do
   status 404
@@ -15,7 +18,7 @@ get '/' do
 end
 
 get '/que/clasicas' do
-  dame_elemento_random_de comidas
+  dame_elemento_random_de clasicas
 end
 
 get '/que/etnicas' do
