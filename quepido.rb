@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'json'
 require "sinatra/config_file"
-require "sinatra/cors"
+require 'sinatra/cross_origin'
 
 config_file './config/comidas.yml'
 
@@ -9,10 +9,20 @@ clasicas = settings.clasicas
 etnicas = settings.etnicas
 todas = clasicas + etnicas
 
-set :allow_origin, "http://localhost https://quepido.herokuapp.com"
-set :allow_methods, "GET,HEAD,POST"
-set :allow_headers, "content-type,if-modified-since"
-set :expose_headers, "location,link"
+  set :bind, '0.0.0.0'
+  configure do
+    enable :cross_origin
+  end
+  before do
+    response.headers['Access-Control-Allow-Origin'] = '*'
+  end
+  
+  options "*" do
+    response.headers["Allow"] = "GET, POST, OPTIONS"
+    response.headers["Access-Control-Allow-Headers"] = "Authorization, Content-Type, Accept, X-User-Email, X-Auth-Token"
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    200
+  end
 
 not_found do
   status 404
