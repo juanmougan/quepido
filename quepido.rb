@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'json'
-require "sinatra/config_file"
+#require "sinatra/config_file"
 require "sinatra/cross_origin"
 
 config_file './config/comidas.yml'
