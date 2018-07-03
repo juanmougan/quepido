@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'json'
 require "sinatra/config_file"
-require "sinatra/cross_origin"
+require "sinatra/cors"
 
 config_file './config/comidas.yml'
 
@@ -9,19 +9,10 @@ clasicas = settings.clasicas
 etnicas = settings.etnicas
 todas = clasicas + etnicas
 
-# To enable cross origin requests for all routes:
-configure do
-  enable :cross_origin
-end
-
-# The extension needs this in order to response to OPTIONS
-options "*" do
-  response.headers["Allow"] = "HEAD,GET,PUT,POST,DELETE,OPTIONS"
- 
-  response.headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Cache-Control, Accept"
- 
-  200
-end
+set :allow_origin, "http://localhost https://quepido.herokuapp.com"
+set :allow_methods, "GET,HEAD,POST"
+set :allow_headers, "content-type,if-modified-since"
+set :expose_headers, "location,link"
 
 not_found do
   status 404
