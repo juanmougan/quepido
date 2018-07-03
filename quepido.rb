@@ -1,12 +1,18 @@
 require 'sinatra'
 require 'json'
 require "sinatra/config_file"
+require "sinatra/cross_origin"
 
 config_file './config/comidas.yml'
 
 clasicas = settings.clasicas
 etnicas = settings.etnicas
 todas = clasicas + etnicas
+
+# To enable cross origin requests for all routes:
+configure do
+  enable :cross_origin
+end
 
 not_found do
   status 404
