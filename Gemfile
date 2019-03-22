@@ -1,6 +1,6 @@
 # define our source to loook for gems
 source "http://rubygems.org/"
-ruby "2.5.1"
+ruby "2.6.2"
 
 # declare the sinatra dependency
 gem "sinatra", "~> 2.0.3"

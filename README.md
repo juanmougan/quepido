@@ -8,7 +8,15 @@ My girfriend and I *never* know what to order for food. So, it's an endless loop
 So, this is a dead-simple solution to that question
 
 ## Usage
+  - Run `bundle install`
   - Run `ruby quepido.rb`
+  - Go to `http://localhost:4567/`
+  - Order what you have just read there :)
+
+## Docker
+
+  - Run `docker build -t que-pido .`
+  - Run `docker image rm que-pido:latest`
   - Go to `http://localhost:4567/`
   - Order what you have just read there :)
 
