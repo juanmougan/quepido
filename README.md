@@ -16,7 +16,7 @@ So, this is a dead-simple solution to that question
 ## Docker
 
   - Run `docker build -t que-pido .`
-  - Run `docker image rm que-pido:latest`
+  - Run `docker run -p 4567:4567 que-pido:latest`
   - Go to `http://localhost:4567/`
   - Order what you have just read there :)
 
