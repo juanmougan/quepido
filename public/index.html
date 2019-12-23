@@ -35,40 +35,54 @@
 
     <script type="text/javascript" src="ajax.js"></script>
 
-    <link rel="StyleSheet" type="text/css" href="boxmodel.css" />
+    <link rel="StyleSheet" type="text/css" href="index.css" />
   </head>
   <body>
-    <p id="que-pido">Podríamos pedir</p>
+    <div class="container-div">
+      <div class="table-row">
+        <div class="hero-div">
+          <h1>Qu&eacute; pido?</h1>
+          <p id="que-pido" class="food-item">
+            Podríamos pedir
+          </p>
+        </div>
 
-    <div class="btn-group" data-toggle="buttons">
-      <label class="btn btn-outline-primary active categorias" id="clasicas">
-        <input
-          type="radio"
-          name="categorias"
-          class="categorias"
-          autocomplete="off"
-          checked
-        />
-        Cl&aacute;sicas
-      </label>
-      <label class="btn btn-outline-primary categorias" id="etnicas">
-        <input
-          type="radio"
-          name="categorias"
-          class="categorias"
-          autocomplete="off"
-        />
-        &Eacute;tnicas
-      </label>
-      <label class="btn btn-outline-primary categorias" id="todas">
-        <input
-          type="radio"
-          name="categorias"
-          class="categorias"
-          autocomplete="off"
-        />
-        Todas
-      </label>
+        <div class="button-container">
+          <div class="btn-group all-buttons" data-toggle="buttons">
+            <label
+              class="btn btn-outline-primary active categorias"
+              id="clasicas"
+            >
+              <input
+                type="radio"
+                name="categorias"
+                class="categorias"
+                autocomplete="off"
+                checked
+              />
+              Cl&aacute;sicas
+            </label>
+            <label class="btn btn-outline-primary categorias" id="etnicas">
+              <input
+                type="radio"
+                name="categorias"
+                class="categorias"
+                autocomplete="off"
+              />
+              &Eacute;tnicas
+            </label>
+            <label class="btn btn-outline-primary categorias" id="todas">
+              <input
+                type="radio"
+                name="categorias"
+                class="categorias"
+                autocomplete="off"
+              />
+              Todas
+            </label>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
