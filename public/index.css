@@ -9,7 +9,7 @@ html {
 
 .container-div {
   height: 100%;
-  width: 50%;
+  width: 75%;
   margin: 0 auto;
   background-position: center;
   background-repeat: no-repeat;
@@ -31,7 +31,11 @@ html {
   text-align: center;
 }
 
+.item-chosen {
+  font-size: 101%;
+}
+
 h1 {
-  font-size: 2.7em;
+  font-size: 200%;
   font-weight: bold;
 }
