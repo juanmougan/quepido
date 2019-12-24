@@ -7,6 +7,47 @@ html {
   font-size: 2.5vw;
 }
 
+.button-container {
+  font-size: 100%;
+}
+
+@media (min-width: 400px) {
+  body {
+    font-size: 7vw;
+  }
+  [class~='btn-outline-primary'] {
+    font-size: 80%;
+  }
+}
+
+@media (min-width: 600px) {
+  body {
+    font-size: 6vw;
+  }
+  [class~='btn-outline-primary'] {
+    font-size: 75%;
+  }
+}
+
+@media (min-width: 800px) {
+  body {
+    font-size: 5vw;
+  }
+  [class~='btn-outline-primary'] {
+    font-size: 75%;
+  }
+}
+
+@media (min-width: 1000px) {
+  body {
+    /* Never get larger than this */
+    font-size: 2.5vw;
+  }
+  [class~='btn-outline-primary'] {
+    font-size: 50%;
+  }
+}
+
 .container-div {
   height: 100%;
   width: 75%;
