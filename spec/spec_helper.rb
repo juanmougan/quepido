@@ -1,6 +1,6 @@
-
 # Configuration for watir-rspec
 require "watir/rspec"
+require "yaml"
 
 RSpec.configure do |config|
   # Use Watir::RSpec::HtmlFormatter to get links to the screenshots, html and
@@ -11,6 +11,14 @@ RSpec.configure do |config|
   # Open up the browser for each example.
   config.before :all do
     @browser = Watir::Browser.new
+    #thing = YAML.load_file('../config/comidas.yml')
+    @meals = YAML.load_file(File.expand_path('../config/comidas.yml', File.dirname(__FILE__)))
+    puts "YAML content"
+    puts @meals.inspect
+    puts "Clasicas"
+    puts @meals["clasicas"]
+    @clasicas = @meals["clasicas"]
+    @etnicas = @meals["etnicas"]
   end
 
   # Close that browser after each example.
@@ -40,5 +48,16 @@ RSpec.configure do |config|
   # You can also use #during to test if something stays the same during the specified period:
   #   expect(@browser.text_field(name: "first_name")).to exist.during(2)
   config.include Watir::RSpec::Matchers
+
+  # My custom matcher
+  RSpec::Matchers.define :any_element_from_list_includes do |element_list|
+    match do |element_text|
+      # expect(chosen.text).to include(@etnicas)
+      element_list.collect {|e| element_text.include? e}.reduce(false) {|first, second| first or second}
+    end
+    failure_message do |element_text|
+      "expected that #{element_text} would include any of #{element_list}."
+    end
+  end  
 end
   
