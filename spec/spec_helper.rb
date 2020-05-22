@@ -11,12 +11,7 @@ RSpec.configure do |config|
   # Open up the browser for each example.
   config.before :all do
     @browser = Watir::Browser.new
-    #thing = YAML.load_file('../config/comidas.yml')
     @meals = YAML.load_file(File.expand_path('../config/comidas.yml', File.dirname(__FILE__)))
-    puts "YAML content"
-    puts @meals.inspect
-    puts "Clasicas"
-    puts @meals["clasicas"]
     @clasicas = @meals["clasicas"]
     @etnicas = @meals["etnicas"]
   end
@@ -52,7 +47,6 @@ RSpec.configure do |config|
   # My custom matcher
   RSpec::Matchers.define :any_element_from_list_includes do |element_list|
     match do |element_text|
-      # expect(chosen.text).to include(@etnicas)
       element_list.collect {|e| element_text.include? e}.reduce(false) {|first, second| first or second}
     end
     failure_message do |element_text|
