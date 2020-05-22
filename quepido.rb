@@ -1,5 +1,5 @@
-require 'sinatra'
-require 'json'
+require "sinatra"
+require "json"
 require "sinatra/config_file"
 require 'sinatra/cross_origin'
 
