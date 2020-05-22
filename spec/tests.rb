@@ -25,7 +25,7 @@ describe "QuePido" do
     
     # THEN one of the "etnicas" meals is returned
     expect_chosen_text_to_be_one_of @etnicas
-    # TODO add assertion: not one of Clasicas
+    expect_chosen_text_not_to_be_one_of @clasicas
   end
 
   it "gets an classic meal when clasicas is clicked" do
@@ -39,7 +39,7 @@ describe "QuePido" do
     
     # THEN one of the "clasicas" meals is returned
     expect_chosen_text_to_be_one_of @clasicas
-    # TODO add assertion: not one of Etnicas
+    expect_chosen_text_not_to_be_one_of @etnicas
   end
 
   it "gets any meal when todas is clicked" do
@@ -56,12 +56,21 @@ describe "QuePido" do
     expect_chosen_text_to_be_one_of todas
   end
 
+  def get_chosen_meal
+    return browser.strong class: 'item-chosen'
+  end
+
   def expect_base_text_to_be_present
     expect(browser.text.include?("Podríamos pedir ")).to be true
   end
 
   def expect_chosen_text_to_be_one_of(list)
-    chosen = browser.strong class: 'item-chosen'
+    chosen = get_chosen_meal
     expect(chosen.text).to any_element_from_list_includes(list)
+  end
+
+  def expect_chosen_text_not_to_be_one_of(list)
+    chosen = get_chosen_meal
+    expect(chosen.text).not_to any_element_from_list_includes(list)
   end
 end
