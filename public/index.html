@@ -70,6 +70,7 @@
                 type="radio"
                 name="categorias"
                 class="categorias"
+                value="clasicas"
                 autocomplete="off"
                 checked
               />
@@ -80,6 +81,7 @@
                 type="radio"
                 name="categorias"
                 class="categorias"
+                value="etnicas"
                 autocomplete="off"
               />
               &Eacute;tnicas
@@ -89,16 +91,25 @@
                 type="radio"
                 name="categorias"
                 class="categorias"
+                value="todas"
                 autocomplete="off"
               />
               Todas
             </label>
           </div>
           <div class="accept-reject-button-container">
-            <button type="submit" class="btn btn-default">
+            <button
+              type="submit"
+              class="btn btn-outline-primary accept-reject-btn"
+              id="reject-btn"
+            >
               <i class="far fa-times-circle"></i>
             </button>
-            <button type="submit" class="btn btn-default">
+            <button
+              type="submit"
+              class="btn btn-outline-primary accept-reject-btn"
+              id="accept-btn"
+            >
               <i class="far fa-check-circle"></i>
             </button>
           </div>
