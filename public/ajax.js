@@ -25,11 +25,20 @@ function acceptOrGetAnotherMeal(acceptOrReject) {
 }
 
 function showMealAccepted() {
-  $('#accepted-meal-alert').html(
-    '<p>Genial que te haya gustado la idea!</p><button type="button" class="close">&times;</button>'
-  );
+  console.log('showMealAccepted');
+  $('#accepted-meal-alert').show();
+  $('#accepted-meal-alert').css({
+    display: 'block',
+  });
   $('#accept-btn').prop('disabled', true);
   $('#reject-btn').prop('disabled', true);
+}
+
+// TODO do I need this?
+function removeCssStyle() {
+  console.log('removeCssStyle');
+  var styleObject = $('#accepted-meal-alert').prop('style');
+  styleObject.removeProperty('display');
 }
 
 $(document).ready(function () {
@@ -42,7 +51,7 @@ $(document).ready(function () {
     console.log('Clicked categories with value: ' + acceptOrReject);
     acceptOrGetAnotherMeal(acceptOrReject);
   });
-  $('.close').click(function () {
-    $('#accepted-meal-alert').alert('close');
+  $('.alert .close').click(function (e) {
+    $(this).parent().hide();
   });
 });
