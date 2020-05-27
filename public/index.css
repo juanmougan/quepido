@@ -85,3 +85,12 @@ h1 {
 #accepted-meal-alert {
   display: none;
 }
+
+.meal-categories {
+  margin-bottom: 0.5em;
+}
+
+.congrats-container {
+  margin-top: 1em;
+  font-size: 0.75em;
+}

@@ -41,11 +41,12 @@ $(document).ready(function () {
   $('#js input[type=radio]').hide();
   $(document.body).on('click', '.accept-reject-btn', function () {
     console.log('Clicked accept-reject button...');
-
     let acceptOrReject = $(this).attr('id');
     acceptOrGetAnotherMeal(acceptOrReject);
   });
   $(document.body).on('click', '.alert .close', function (e) {
     $(this).parent().hide();
+    $('#accept-btn').prop('disabled', false);
+    $('#reject-btn').prop('disabled', false);
   });
 });
