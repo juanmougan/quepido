@@ -1,6 +1,6 @@
-const defaultTextPrefix = 'Podríamos pedir';
+const DEFAULT_TEXT_PREFIX = 'Podríamos pedir';
 $(document).ready(function () {
-  getFromEndpoint('clasicas', defaultTextPrefix);
+  getFromEndpoint('clasicas', DEFAULT_TEXT_PREFIX);
 });
 
 function getFromEndpoint(endpoint, textPrefix) {
@@ -33,20 +33,31 @@ function showMealAccepted() {
   $('#accepted-meal-alert').show();
 }
 
-$(document).ready(function () {
+function loadClassicMeal() {
   $('.categorias').click(function () {
     let endpoint = $(this).attr('id');
-    getFromEndpoint(endpoint, defaultTextPrefix);
+    getFromEndpoint(endpoint, DEFAULT_TEXT_PREFIX);
   });
-  $('#js input[type=radio]').hide();
+}
+
+function handleAcceptRejectClick(params) {
   $(document.body).on('click', '.accept-reject-btn', function () {
     console.log('Clicked accept-reject button...');
     let acceptOrReject = $(this).attr('id');
     acceptOrGetAnotherMeal(acceptOrReject);
   });
+}
+
+function handleCloseCongrats() {
   $(document.body).on('click', '.alert .close', function (e) {
     $(this).parent().hide();
     $('#accept-btn').prop('disabled', false);
     $('#reject-btn').prop('disabled', false);
   });
+}
+
+$(document).ready(function () {
+  loadClassicMeal();
+  handleAcceptRejectClick();
+  handleCloseCongrats();
 });
