@@ -15,8 +15,12 @@ function getFromEndpoint(endpoint, textPrefix) {
 
 function acceptOrGetAnotherMeal(acceptOrReject) {
   if (acceptOrReject == 'accept-btn') {
+    console.log('Meal accepted.');
+    $('#accept-btn').prop('disabled', true);
+    $('#reject-btn').prop('disabled', true);
     showMealAccepted();
   } else {
+    console.log('Meal rejected!');
     const alternativeTextPrefix = 'Entonces pidamos';
     let mealType = $("input[name='categorias']:checked").val();
     console.log(`mealType: ${mealType}`);
@@ -25,20 +29,8 @@ function acceptOrGetAnotherMeal(acceptOrReject) {
 }
 
 function showMealAccepted() {
-  console.log('showMealAccepted');
+  console.log('showing meal accepted...');
   $('#accepted-meal-alert').show();
-  $('#accepted-meal-alert').css({
-    display: 'block',
-  });
-  $('#accept-btn').prop('disabled', true);
-  $('#reject-btn').prop('disabled', true);
-}
-
-// TODO do I need this?
-function removeCssStyle() {
-  console.log('removeCssStyle');
-  var styleObject = $('#accepted-meal-alert').prop('style');
-  styleObject.removeProperty('display');
 }
 
 $(document).ready(function () {
@@ -46,12 +38,14 @@ $(document).ready(function () {
     let endpoint = $(this).attr('id');
     getFromEndpoint(endpoint, defaultTextPrefix);
   });
-  $('.accept-reject-btn').click(function () {
+  $('#js input[type=radio]').hide();
+  $(document.body).on('click', '.accept-reject-btn', function () {
+    console.log('Clicked accept-reject button...');
+
     let acceptOrReject = $(this).attr('id');
-    console.log('Clicked categories with value: ' + acceptOrReject);
     acceptOrGetAnotherMeal(acceptOrReject);
   });
-  $('.alert .close').click(function (e) {
+  $(document.body).on('click', '.alert .close', function (e) {
     $(this).parent().hide();
   });
 });
