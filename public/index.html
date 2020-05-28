@@ -4,34 +4,69 @@
     <title>Qué Pido?</title>
 
     <!-- jQuery and Bootstrap -->
-    <script
+    <!-- <script
       src="https://code.jquery.com/jquery-3.1.1.min.js"
       integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
       crossorigin="anonymous"
+    ></script> -->
+
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.min.js"
+      crossorigin="anonymous"
     ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"
+      integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd"
+      crossorigin="anonymous"
+    ></script>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
 
     <!-- Latest compiled and minified CSS -->
-    <link
+    <!-- <link
       rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
       integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
       crossorigin="anonymous"
-    />
+    /> -->
 
     <!-- Optional theme -->
-    <link
+    <!-- <link
       rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap-theme.min.css"
       integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
       crossorigin="anonymous"
-    />
+    /> -->
 
     <!-- Latest compiled and minified JavaScript -->
-    <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    <!-- <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
       integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
       crossorigin="anonymous"
+    ></script> -->
+
+    <!-- Font Awesome -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+      integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs="
+      crossorigin="anonymous"
     ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
+      crossorigin="anonymous"
+    />
 
     <script type="text/javascript" src="ajax.js"></script>
 
@@ -48,38 +83,70 @@
         </div>
 
         <div class="button-container">
-          <div class="btn-group all-buttons" data-toggle="buttons">
+          <div
+            class="btn-group btn-group-toggle meal-categories"
+            data-toggle="buttons"
+          >
             <label
-              class="btn btn-outline-primary active categorias"
+              class="btn btn-outline-dark btn-sm active categorias"
               id="clasicas"
             >
               <input
                 type="radio"
                 name="categorias"
                 class="categorias"
+                value="clasicas"
                 autocomplete="off"
                 checked
               />
               Cl&aacute;sicas
             </label>
-            <label class="btn btn-outline-primary categorias" id="etnicas">
+            <label class="btn btn-outline-dark btn-sm categorias" id="etnicas">
               <input
                 type="radio"
                 name="categorias"
                 class="categorias"
+                value="etnicas"
                 autocomplete="off"
               />
               &Eacute;tnicas
             </label>
-            <label class="btn btn-outline-primary categorias" id="todas">
+            <label class="btn btn-outline-dark btn-sm categorias" id="todas">
               <input
                 type="radio"
                 name="categorias"
                 class="categorias"
+                value="todas"
                 autocomplete="off"
               />
               Todas
             </label>
+          </div>
+          <div class="accept-reject-button-container">
+            <button
+              type="submit"
+              class="btn btn-outline-dark btn-sm accept-reject-btn"
+              id="reject-btn"
+            >
+              <i class="far fa-times-circle"></i>
+            </button>
+            <button
+              type="submit"
+              class="btn btn-outline-dark btn-sm accept-reject-btn"
+              id="accept-btn"
+            >
+              <i class="far fa-check-circle"></i>
+            </button>
+          </div>
+          <div class="d-inline-flex p-2 inline-alert-container">
+            <div
+              class="alert alert-success alert-dismissible fade show align-middle congrats-container"
+              role="alert"
+              id="accepted-meal-alert"
+            >
+              <button type="button" class="close">&times;</button>
+              <p>Genial que te haya gustado la idea!</p>
+            </div>
           </div>
         </div>
       </div>

@@ -66,7 +66,8 @@ html {
 }
 
 .hero-div,
-.button-container {
+.button-container,
+.accept-reject-button-container {
   width: 100%;
   vertical-align: middle;
   text-align: center;
@@ -79,4 +80,17 @@ html {
 h1 {
   font-size: 200%;
   font-weight: bold;
+}
+
+#accepted-meal-alert {
+  display: none;
+}
+
+.meal-categories {
+  margin-bottom: 0.5em;
+}
+
+.congrats-container {
+  margin-top: 1em;
+  font-size: 0.6em;
 }
