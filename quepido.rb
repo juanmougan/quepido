@@ -3,11 +3,13 @@ require "json"
 require "sinatra/config_file"
 require 'sinatra/cross_origin'
 
-config_file './config/comidas.yml'
+class Main < Sinatra::Base
+  register Sinatra::ConfigFile
+  config_file './config/comidas.yml'
 
-clasicas = settings.clasicas
-etnicas = settings.etnicas
-todas = clasicas + etnicas
+  clasicas = settings.clasicas
+  etnicas = settings.etnicas
+  todas = clasicas + etnicas
 
   set :bind, '0.0.0.0'
   configure do
@@ -24,32 +26,35 @@ todas = clasicas + etnicas
     200
   end
 
-not_found do
-  status 404
-  "Esta p&aacute;gina no existe :("
-end
+  not_found do
+    status 404
+    "Esta p&aacute;gina no existe :("
+  end
 
-get '/' do
-  send_file 'public/index.html'
-end
+  get '/' do
+    send_file 'public/index.html'
+  end
 
-get '/que/clasicas' do
-  dame_elemento_random_de clasicas
-end
+  get '/que/clasicas' do
+    dame_elemento_random_de clasicas
+  end
 
-get '/que/etnicas' do
-  dame_elemento_random_de etnicas
-end
+  get '/que/etnicas' do
+    dame_elemento_random_de etnicas
+  end
 
-get '/que/todas' do
-  dame_elemento_random_de todas
-end
+  get '/que/todas' do
+    dame_elemento_random_de todas
+  end
 
-get '/que' do
-  todas.to_json
-end
+  get '/que' do
+    todas.to_json
+  end
 
-def dame_elemento_random_de(lista)
-  maxIndex = Random.rand(lista.size - 1)
-  lista[maxIndex]
+  def dame_elemento_random_de(lista)
+    maxIndex = Random.rand(lista.size - 1)
+    lista[maxIndex]
+  end
+
+  run!
 end
