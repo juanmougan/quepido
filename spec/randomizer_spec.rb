@@ -8,7 +8,7 @@ describe Randomizer do
     already_ordered_classics = all_classics
     randomizer = Randomizer.new(all_classics, [])
     # When get another random meal
-    meal = randomizer.random_classic
+    meal = randomizer.random_classic_except already_ordered_classics
     # Then an meal is returned
     expect(meal).to eq("")
   end

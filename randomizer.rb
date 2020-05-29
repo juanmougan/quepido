@@ -5,15 +5,15 @@ class Randomizer
     @all = classics + ethnics
   end
 
-  def random_classic
+  def random_classic_except black_list
     random_element_from(@classics)
   end
 
-  def random_ethnics
+  def random_ethnics_except black_list
     random_element_from(@ethnics)
   end
 
-  def random_all
+  def random_all_except black_list
     random_element_from(@all)
   end
 

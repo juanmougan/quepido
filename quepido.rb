@@ -48,15 +48,15 @@ class QuePido < Sinatra::Base
   end
 
   get '/que/clasicas' do
-    randomizer.random_classic
+    randomizer.random_classic_except temp_black_list
   end
 
   get '/que/etnicas' do
-    randomizer.random_ethnics
+    randomizer.random_ethnics_except temp_black_list
   end
 
   get '/que/todas' do
-    randomizer.random_all
+    randomizer.random_all_except temp_black_list
   end
 
   get '/que' do
