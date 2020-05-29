@@ -2,14 +2,17 @@ require "sinatra"
 require "json"
 require "sinatra/config_file"
 require 'sinatra/cross_origin'
+require './randomizer.rb'
 
-class Main < Sinatra::Base
+class QuePido < Sinatra::Base
   register Sinatra::ConfigFile
   config_file './config/comidas.yml'
 
   clasicas = settings.clasicas
   etnicas = settings.etnicas
   todas = clasicas + etnicas
+  randomizer = Randomizer.new(clasicas, etnicas)
+  temp_black_list = []
 
   set :bind, '0.0.0.0'
   configure do
@@ -17,6 +20,15 @@ class Main < Sinatra::Base
   end
   before do
     response.headers['Access-Control-Allow-Origin'] = '*'
+  end
+
+  before '/que/*' do
+    temp_black_list = params[:except] unless params[:except].nil?
+    puts "temp_black_list: #{temp_black_list}"
+  end
+
+  after '/que/*' do
+    temp_black_list = []
   end
   
   options "*" do
@@ -36,24 +48,19 @@ class Main < Sinatra::Base
   end
 
   get '/que/clasicas' do
-    dame_elemento_random_de clasicas
+    randomizer.random_classic
   end
 
   get '/que/etnicas' do
-    dame_elemento_random_de etnicas
+    randomizer.random_ethnics
   end
 
   get '/que/todas' do
-    dame_elemento_random_de todas
+    randomizer.random_all
   end
 
   get '/que' do
     todas.to_json
-  end
-
-  def dame_elemento_random_de(lista)
-    maxIndex = Random.rand(lista.size - 1)
-    lista[maxIndex]
   end
 
   run!
