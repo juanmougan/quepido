@@ -1,16 +1,31 @@
 const DEFAULT_TEXT_PREFIX = 'Podríamos pedir';
+let rejectedMeals = [];
+
 $(document).ready(function () {
   getFromEndpoint('clasicas', DEFAULT_TEXT_PREFIX);
 });
 
 function getFromEndpoint(endpoint, textPrefix) {
-  $(document).ready(function () {
-    $.get('que' + '/' + endpoint, function (data) {
-      $('#que-pido').html(
-        `${textPrefix} <strong class="item-chosen"> ${data} </strong>`
-      );
-    });
+  const url = `que/${endpoint}`;
+  console.log(`URL: ${url}`);
+  performGet(url, textPrefix);
+}
+
+function getFromEndpointExcept(endpoint, textPrefix, blacklist) {
+  console.log(`blacklist: ${blacklist}`);
+  const url = `que/${endpoint}?except=${blacklist}`;
+  console.log(`URL: ${url}`);
+  performGet(url, textPrefix);
+}
+
+function performGet(url, textPrefix) {
+  // $(document).ready(function () {
+  $.get(url, function (data) {
+    $('#que-pido').html(
+      `${textPrefix} <strong class="item-chosen"> ${data} </strong>`
+    );
   });
+  // });
 }
 
 function acceptOrGetAnotherMeal(acceptOrReject) {
@@ -19,9 +34,16 @@ function acceptOrGetAnotherMeal(acceptOrReject) {
     $('#reject-btn').prop('disabled', true);
     showMealAccepted();
   } else {
+    const rejectedMeal = $('.item-chosen').text().trim();
+    rejectedMeals.push(rejectedMeal);
+    localStorage.setItem('blacklist', rejectedMeals);
     const alternativeTextPrefix = 'Entonces pidamos';
     let mealType = $("input[name='categorias']:checked").val();
-    getFromEndpoint(mealType, alternativeTextPrefix);
+    getFromEndpointExcept(
+      mealType,
+      alternativeTextPrefix,
+      localStorage.getItem('blacklist')
+    );
   }
 }
 
@@ -48,6 +70,8 @@ function handleCloseCongrats() {
     $(this).parent().hide();
     $('#accept-btn').prop('disabled', false);
     $('#reject-btn').prop('disabled', false);
+    localStorage.clear();
+    rejectedMeals = [];
   });
 }
 

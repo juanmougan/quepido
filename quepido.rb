@@ -23,8 +23,9 @@ class QuePido < Sinatra::Base
   end
 
   before '/que/*' do
-    temp_black_list = params[:except] unless params[:except].nil?
-    puts "temp_black_list: #{temp_black_list}"
+    if !params[:except].nil? && !params[:except].empty?
+      temp_black_list = params[:except].split ","
+    end
   end
 
   after '/que/*' do
@@ -43,20 +44,43 @@ class QuePido < Sinatra::Base
     "Esta p&aacute;gina no existe :("
   end
 
+  def bad_request(message)
+    status 400
+    body message
+  end
+
   get '/' do
     send_file 'public/index.html'
   end
 
   get '/que/clasicas' do
-    randomizer.random_classic_except temp_black_list
+    begin
+      randomizer.random_classic_except temp_black_list
+    rescue ArgumentError
+      bad_request 'Que lástima! No tenemos más sugerencias para la categoría "Clásicas"'
+    ensure
+      temp_black_list = []
+    end
   end
 
   get '/que/etnicas' do
-    randomizer.random_ethnics_except temp_black_list
+    begin
+      randomizer.random_ethnics_except temp_black_list
+    rescue ArgumentError
+      bad_request 'Que lástima! No tenemos más sugerencias para la categoría "Étnicas"'
+    ensure
+      temp_black_list = []
+    end
   end
 
   get '/que/todas' do
-    randomizer.random_all_except temp_black_list
+    begin
+      randomizer.random_all_except temp_black_list
+    rescue ArgumentError
+      bad_request 'Que lástima! No tenemos más sugerencias para darte"'
+    ensure
+      temp_black_list = []
+    end
   end
 
   get '/que' do
