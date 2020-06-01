@@ -82,7 +82,7 @@ h1 {
   font-weight: bold;
 }
 
-#accepted-meal-alert {
+.meal-alert {
   display: none;
 }
 
