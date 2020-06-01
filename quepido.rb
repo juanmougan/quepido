@@ -2,12 +2,17 @@ require "sinatra"
 require "json"
 require "sinatra/config_file"
 require 'sinatra/cross_origin'
+require './randomizer.rb'
 
-config_file './config/comidas.yml'
+class QuePido < Sinatra::Base
+  register Sinatra::ConfigFile
+  config_file './config/comidas.yml'
 
-clasicas = settings.clasicas
-etnicas = settings.etnicas
-todas = clasicas + etnicas
+  clasicas = settings.clasicas
+  etnicas = settings.etnicas
+  todas = clasicas + etnicas
+  randomizer = Randomizer.new(clasicas, etnicas)
+  temp_black_list = []
 
   set :bind, '0.0.0.0'
   configure do
@@ -15,6 +20,16 @@ todas = clasicas + etnicas
   end
   before do
     response.headers['Access-Control-Allow-Origin'] = '*'
+  end
+
+  before '/que/*' do
+    if !params[:except].nil? && !params[:except].empty?
+      temp_black_list = params[:except].split ","
+    end
+  end
+
+  after '/que/*' do
+    temp_black_list = []
   end
   
   options "*" do
@@ -24,32 +39,53 @@ todas = clasicas + etnicas
     200
   end
 
-not_found do
-  status 404
-  "Esta p&aacute;gina no existe :("
-end
+  not_found do
+    status 404
+    "Esta p&aacute;gina no existe :("
+  end
 
-get '/' do
-  send_file 'public/index.html'
-end
+  def bad_request(message)
+    status 400
+    body message
+  end
 
-get '/que/clasicas' do
-  dame_elemento_random_de clasicas
-end
+  get '/' do
+    send_file 'public/index.html'
+  end
 
-get '/que/etnicas' do
-  dame_elemento_random_de etnicas
-end
+  get '/que/clasicas' do
+    begin
+      randomizer.random_classic_except temp_black_list
+    rescue ArgumentError
+      bad_request 'Que lástima! No tenemos más sugerencias para la categoría "Clásicas"'
+    ensure
+      temp_black_list = []
+    end
+  end
 
-get '/que/todas' do
-  dame_elemento_random_de todas
-end
+  get '/que/etnicas' do
+    begin
+      randomizer.random_ethnics_except temp_black_list
+    rescue ArgumentError
+      bad_request 'Que lástima! No tenemos más sugerencias para la categoría "Étnicas"'
+    ensure
+      temp_black_list = []
+    end
+  end
 
-get '/que' do
-  todas.to_json
-end
+  get '/que/todas' do
+    begin
+      randomizer.random_all_except temp_black_list
+    rescue ArgumentError
+      bad_request 'Que lástima! No tenemos más sugerencias para darte"'
+    ensure
+      temp_black_list = []
+    end
+  end
 
-def dame_elemento_random_de(lista)
-  maxIndex = Random.rand(lista.size - 1)
-  lista[maxIndex]
+  get '/que' do
+    todas.to_json
+  end
+
+  run!
 end
