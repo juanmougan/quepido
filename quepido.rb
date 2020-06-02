@@ -77,7 +77,7 @@ class QuePido < Sinatra::Base
     begin
       randomizer.random_all_except temp_black_list
     rescue ArgumentError
-      bad_request 'Que lástima! No tenemos más sugerencias para darte"'
+      bad_request 'Que lástima! No tenemos más sugerencias para darte'
     ensure
       temp_black_list = []
     end

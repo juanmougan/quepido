@@ -7,7 +7,6 @@ $(document).ready(function () {
 
 function getFromEndpoint(endpoint, textPrefix) {
   const url = `que/${endpoint}`;
-  console.log(`URL: ${url}`);
   performGet(url, textPrefix);
 }
 
@@ -68,7 +67,7 @@ function showNoMoreMeals(errorMsg) {
   $('#no-more-meals-alert').show();
 }
 
-function loadClassicMeal() {
+function handleCategoryClick() {
   $('.categorias').click(function () {
     let endpoint = $(this).attr('id');
     getFromEndpoint(endpoint, DEFAULT_TEXT_PREFIX);
@@ -92,7 +91,7 @@ function handleCloseCongrats() {
 }
 
 $(document).ready(function () {
-  loadClassicMeal();
+  handleCategoryClick();
   handleAcceptRejectClick();
   handleCloseCongrats();
 });
