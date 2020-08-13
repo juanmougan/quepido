@@ -68,7 +68,7 @@ function showNoMoreMeals(errorMsg) {
 }
 
 function handleCategoryClick() {
-  $('.categorias').click(function () {
+  $('.categorias').one('click', function () {
     let endpoint = $(this).attr('id');
     getFromEndpoint(endpoint, DEFAULT_TEXT_PREFIX);
   });
