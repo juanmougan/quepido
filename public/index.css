@@ -11,6 +11,18 @@ html {
   font-size: 100%;
 }
 
+@media (max-width: 400px) {
+  .site-name {
+    font-size: 150%;
+  }
+  body {
+    font-size: 8.5vw;
+  }
+  [class~='btn-outline-primary'] {
+    font-size: 100%;
+  }
+}
+
 @media (min-width: 400px) {
   body {
     font-size: 7vw;
