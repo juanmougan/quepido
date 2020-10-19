@@ -4,7 +4,7 @@ Imagine this situation: you are at home. You are hungry. You have *no idea* of w
 
 ## Motivation
 
-My girfriend and I *never* know what to order for food. So, it's an endless loop of "What should we have for diner? I don't know, what would you like? etc", going on... *forever*.  
+My girfriend and I *never* know what to order for food. So, it's an endless loop of "What should we have for dinner? I don't know, what would you like? etc", going on... *forever*.  
 So, this is a dead-simple solution to that question
 
 ## Usage
