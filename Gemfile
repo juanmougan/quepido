@@ -4,7 +4,7 @@ ruby "2.6.5"
 
 
 # declare the sinatra dependency
-gem 'sinatra', '~> 2.0', '>= 2.0.7'
+gem 'sinatra', '~> 2.2'
 gem 'sinatra-contrib', '~> 2.0', '>= 2.0.7'
 gem 'sinatra-cross_origin', '~> 0.4.0'
 
